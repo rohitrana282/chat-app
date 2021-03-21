@@ -1,23 +1,12 @@
 import React from 'react';
 import firebase from 'firebase/app';
-import { Alert, Button, Col, Container, Grid, Icon, Panel, Row } from 'rsuite';
-import { auth, database } from '../misc/firebase';
+import { Button, Col, Container, Grid, Icon, Panel, Row } from 'rsuite';
+import { auth } from '../misc/firebase';
 
 const SignIn = () => {
   const signInWithProvider = async provider => {
     try {
-      const { additionalUserInfo, user } = await auth.signInWithPopup(provider);
-
-      if (additionalUserInfo.isNewUser) {
-        await database.ref(`/profiles/${user.uid}`).set({
-          name: user.displayName,
-          createdAt: firebase.database.ServerValue.TIMESTAMP,
-        });
-      }
-
-      Alert.success('Signed in successfully', 4000);
-    } catch (err) {
-      Alert.error(err.message, 4000);
+      const result = await auth.signInWithPopup(provider);
     }
   };
 
