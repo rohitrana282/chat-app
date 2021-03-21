@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Sidebar } from 'rsuite';
+import { Grid, Row } from 'rsuite';
 import Col from 'rsuite/lib/Carousel';
 
 const Home = () => {
