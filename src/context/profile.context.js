@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { auth, database } from '../misc/firebase';
 
 const ProfileContext = createContext();
@@ -22,6 +22,7 @@ export const ProfileProvider = ({ children }) => {
             uid: authObj.uid,
             email: authObj.email,
           };
+
           setProfile(data);
           setIsLoading(false);
         });
@@ -34,8 +35,10 @@ export const ProfileProvider = ({ children }) => {
         setIsLoading(false);
       }
     });
+
     return () => {
       authUnsub();
+
       if (userRef) {
         userRef.off();
       }
@@ -48,4 +51,5 @@ export const ProfileProvider = ({ children }) => {
     </ProfileContext.Provider>
   );
 };
+
 export const useProfile = () => useContext(ProfileContext);
