@@ -42,6 +42,8 @@ const EditableInput = ({
           {...inputProps}
           disabled={!isEditable}
           placeholder={placeholder}
+          value={input}
+          onChange={onInputChange}
         />
         <InputGroup.Button onClick={onEditClick}>
           <Icon icon={isEditable ? 'close' : 'edit2'} />
