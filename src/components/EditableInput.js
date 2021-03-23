@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Alert, Icon, Input, InputGroup } from 'rsuite';
+import { Input, InputGroup, Icon, Alert } from 'rsuite';
 
 const EditableInput = ({
   initialValue,
@@ -27,6 +27,7 @@ const EditableInput = ({
     if (trimmed === '') {
       Alert.info(emptyMsg, 4000);
     }
+
     if (trimmed !== initialValue) {
       await onSave(trimmed);
     }

@@ -47,7 +47,7 @@ const Dashboard = ({ onSignOut }) => {
           Sign out
         </Button>
       </Drawer.Footer>
-    </>
+    </AvatarU>
   );
 };
 
