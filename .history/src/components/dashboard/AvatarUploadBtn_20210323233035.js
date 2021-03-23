@@ -1,10 +1,9 @@
-/* eslint-disable no-undef */
 import React, { useState, useRef } from 'react';
 import { Modal, Button, Alert } from 'rsuite';
 import AvatarEditor from 'react-avatar-editor';
 import { useModalState } from '../../misc/custom-hooks';
-import { storage, database } from '../../misc/firebase';
-import { useProfile } from '../../context/profile.context';
+import { storage } from '../../misc/firebase';
+import { database } from 'firebase';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
 
@@ -30,8 +29,6 @@ const AvatarUploadBtn = () => {
 
   const [img, setImg] = useState(null);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const AvatarEditorRef = useRef();
 
   const onFileInputChange = ev => {
@@ -53,7 +50,6 @@ const AvatarUploadBtn = () => {
   const onUploadClick = async () => {
     const canvas = AvatarEditorRef.current.getImageScaledToCanvas();
 
-    setIsLoading(true);
     try {
       const blob = await getBlob(canvas);
 
@@ -70,15 +66,7 @@ const AvatarUploadBtn = () => {
       const userAvatarRef = database
         .ref(`/profiles/${profile.uid}`)
         .child('avatar');
-
-      await userAvatarRef.set(downloadUrl);
-
-      setIsLoading(false);
-      Alert.info('Avatar has been uploaded', 4000);
-    } catch (err) {
-      setIsLoading(false);
-      Alert.error(err.message, 4000);
-    }
+    } catch (err) {}
   };
 
   return (
@@ -118,12 +106,7 @@ const AvatarUploadBtn = () => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              block
-              appearance="ghost"
-              onClick={onUploadClick}
-              disabled={isLoading}
-            >
+            <Button block appearance="ghost" onClick={onUploadClick}>
               Upload new avatar
             </Button>
           </Modal.Footer>

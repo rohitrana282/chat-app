@@ -1,10 +1,9 @@
-/* eslint-disable no-undef */
 import React, { useState, useRef } from 'react';
 import { Modal, Button, Alert } from 'rsuite';
 import AvatarEditor from 'react-avatar-editor';
 import { useModalState } from '../../misc/custom-hooks';
-import { storage, database } from '../../misc/firebase';
-import { useProfile } from '../../context/profile.context';
+import { storage } from '../../misc/firebase';
+import { database } from 'firebase';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
 

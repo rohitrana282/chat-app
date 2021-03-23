@@ -1,10 +1,7 @@
-/* eslint-disable no-undef */
 import React, { useState, useRef } from 'react';
 import { Modal, Button, Alert } from 'rsuite';
 import AvatarEditor from 'react-avatar-editor';
 import { useModalState } from '../../misc/custom-hooks';
-import { storage, database } from '../../misc/firebase';
-import { useProfile } from '../../context/profile.context';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
 
@@ -26,11 +23,7 @@ const getBlob = canvas => {
 const AvatarUploadBtn = () => {
   const { isOpen, open, close } = useModalState();
 
-  const { profile } = useProfile();
-
   const [img, setImg] = useState(null);
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const AvatarEditorRef = useRef();
 
@@ -50,35 +43,10 @@ const AvatarUploadBtn = () => {
     }
   };
 
-  const onUploadClick = async () => {
+  const onUploadClick = () => {
     const canvas = AvatarEditorRef.current.getImageScaledToCanvas();
 
-    setIsLoading(true);
-    try {
-      const blob = await getBlob(canvas);
-
-      const avatarFileRef = storage
-        .ref(`/profile/${profile.uid}`)
-        .child('avatar');
-
-      const uploadAvatarResult = await avatarFileRef.put(blob, {
-        cacheControl: `public, max-age=${3600 * 24 * 3}`,
-      });
-
-      const downloadUrl = await uploadAvatarResult.ref.getDownloadURL();
-
-      const userAvatarRef = database
-        .ref(`/profiles/${profile.uid}`)
-        .child('avatar');
-
-      await userAvatarRef.set(downloadUrl);
-
-      setIsLoading(false);
-      Alert.info('Avatar has been uploaded', 4000);
-    } catch (err) {
-      setIsLoading(false);
-      Alert.error(err.message, 4000);
-    }
+    canvas.toBlob();
   };
 
   return (
@@ -118,12 +86,7 @@ const AvatarUploadBtn = () => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              block
-              appearance="ghost"
-              onClick={onUploadClick}
-              disabled={isLoading}
-            >
+            <Button block appearance="ghost" onClick={onUploadClick}>
               Upload new avatar
             </Button>
           </Modal.Footer>

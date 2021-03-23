@@ -3,7 +3,8 @@ import React, { useState, useRef } from 'react';
 import { Modal, Button, Alert } from 'rsuite';
 import AvatarEditor from 'react-avatar-editor';
 import { useModalState } from '../../misc/custom-hooks';
-import { storage, database } from '../../misc/firebase';
+import { storage } from '../../misc/firebase';
+import { database } from 'firebase';
 import { useProfile } from '../../context/profile.context';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
