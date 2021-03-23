@@ -6,9 +6,7 @@ import EditableInput from '../EditableInput';
 const Dashboard = ({ onSignOut }) => {
   const { profile } = useProfile();
 
-  const onSave = async newData => {
-    console.log(newData);
-  };
+  const onSave = newData => {};
 
   return (
     <>
