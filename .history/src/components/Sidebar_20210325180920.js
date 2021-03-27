@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateRoomBtnModal from './CreateRoomBtnModal';
+import CreateRoomBtnModal from './dashboard/CreateRoomBtnModal';
 import DashboardToggle from './dashboard/DashboardToggle';
 
 const Sidebar = () => {
