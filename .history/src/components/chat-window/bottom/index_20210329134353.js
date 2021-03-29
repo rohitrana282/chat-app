@@ -1,0 +1,17 @@
+import React from 'react';
+import { Icon, InputGroup } from 'rsuite';
+
+const Bottom = () => {
+  return (
+    <div>
+      <InputGroup>
+        <Input placeholder="Write a new message here..." />
+        <InputGroup.Button appearance="primary" color="blue">
+          <Icon icon="send" />
+        </InputGroup.Button>
+      </InputGroup>
+    </div>
+  );
+};
+
+export default Bottom;
