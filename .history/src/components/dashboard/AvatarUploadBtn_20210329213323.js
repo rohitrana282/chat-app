@@ -1,11 +1,11 @@
+/* eslint-disable no-undef */
 import React, { useState, useRef } from 'react';
 import { Modal, Button, Alert } from 'rsuite';
 import AvatarEditor from 'react-avatar-editor';
 import { useModalState } from '../../misc/custom-hooks';
 import { storage, database } from '../../misc/firebase';
 import { useProfile } from '../../context/profile.context';
-import ProfileAvatar from '../ProfileAvatar';
-import { getUserUpdates } from '../../misc/helpers';
+import ProfileAvatar from './ProfileAvatar';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
 
@@ -18,7 +18,7 @@ const getBlob = canvas => {
       if (blob) {
         resolve(blob);
       } else {
-        reject(new Error('File process error'));
+        reject(new Error('File Process Error'));
       }
     });
   });
@@ -28,9 +28,12 @@ const AvatarUploadBtn = () => {
   const { isOpen, open, close } = useModalState();
 
   const { profile } = useProfile();
+
   const [img, setImg] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
-  const avatarEditorRef = useRef();
+
+  const AvatarEditorRef = useRef();
 
   const onFileInputChange = ev => {
     const currFiles = ev.target.files;
@@ -49,7 +52,7 @@ const AvatarUploadBtn = () => {
   };
 
   const onUploadClick = async () => {
-    const canvas = avatarEditorRef.current.getImageScaledToCanvas();
+    const canvas = AvatarEditorRef.current.getImageScaledToCanvas();
 
     setIsLoading(true);
     try {
@@ -65,14 +68,11 @@ const AvatarUploadBtn = () => {
 
       const downloadUrl = await uploadAvatarResult.ref.getDownloadURL();
 
-      const updates = await getUserUpdates(
-        profile.uid,
-        'avatar',
-        downloadUrl,
-        database
-      );
+      const userAvatarRef = database
+        .ref(`/profiles/${profile.uid}`)
+        .child('avatar');
 
-      await database.ref().update(updates);
+      await userAvatarRef.set(downloadUrl);
 
       setIsLoading(false);
       Alert.info('Avatar has been uploaded', 4000);
@@ -89,7 +89,6 @@ const AvatarUploadBtn = () => {
         name={profile.name}
         className="width-200 height-200 img-fullsize font-huge"
       />
-
       <div>
         <label
           htmlFor="avatar-upload"
@@ -113,7 +112,7 @@ const AvatarUploadBtn = () => {
             <div className="d-flex justify-content-center align-items-center h-100">
               {img && (
                 <AvatarEditor
-                  ref={avatarEditorRef}
+                  ref={AvatarEditorRef}
                   image={img}
                   width={200}
                   height={200}
