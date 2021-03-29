@@ -28,7 +28,7 @@ const RoomItem = ({ room }) => {
               />
             </div>
             <div className="text-disappear ml-2">
-              <div className="italic bold">{lastMessage.author.name}</div>
+              <div>{lastMessage.author.name}</div>
               <span>{lastMessage.text}</span>
             </div>
           </>
