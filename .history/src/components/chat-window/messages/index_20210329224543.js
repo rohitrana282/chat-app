@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { database } from '../../../misc/firebase';
 import { transformToArrWithId } from '../../../misc/helpers';
-import MessageItem from './MessageItem';
 
 const Messages = () => {
   const { chatId } = useParams();
@@ -28,13 +27,7 @@ const Messages = () => {
     };
   }, [chatId]);
 
-  return (
-    <ul className="msg-list custom-scroll">
-      {isChatEmpty && <li>No messages yet</li>}
-      {canShowMessages &&
-        messages.map(msg => <MessageItem key={msg.id} message={msg} />)}
-    </ul>
-  );
+  return <div>messages</div>;
 };
 
 export default Messages;
