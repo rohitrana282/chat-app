@@ -41,7 +41,7 @@ const Chat = () => {
       <div className="chat-bottom">
         <ChatBottom />
       </div>
-    </CurrentRoomProvider>
+    </Curre>
   );
 };
 
