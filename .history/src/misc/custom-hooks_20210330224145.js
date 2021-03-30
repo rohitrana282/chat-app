@@ -1,4 +1,4 @@
-import { database } from './firebase';
+import { database } from '.firebase';
 import { useState, useCallback, useEffect } from 'react';
 
 export function useModalState(defaultValue = false) {
@@ -32,20 +32,6 @@ export function usePresence(uid) {
   const [presence, setPresence] = useState(null);
 
   useEffect(() => {
-    const userStatusRef = database.ref(`/status/${uid}`);
-
-    userStatusRef.on('value', snap => {
-      if (snap.exists()) {
-        const data = snap.val();
-
-        setPresence(data);
-      }
-    });
-
-    return () => {
-      userStatusRef.off();
-    };
-  }, [uid]);
-
-  return presence;
+    const userStatusRef = database;
+  });
 }

@@ -46,6 +46,4 @@ export function usePresence(uid) {
       userStatusRef.off();
     };
   }, [uid]);
-
-  return presence;
 }
