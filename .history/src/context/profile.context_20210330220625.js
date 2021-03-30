@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { auth, database } from '../misc/firebase';
 import firebase from 'firebase/app';
 
-export const isOfflineForDatabase = {
+const isOfflineForDatabase = {
   state: 'offline',
   last_changed: firebase.database.ServerValue.TIMESTAMP,
 };
