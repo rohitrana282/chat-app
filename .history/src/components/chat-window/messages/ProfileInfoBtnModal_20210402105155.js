@@ -34,7 +34,6 @@ const ProfileInfoBtnModal = ({ profile, children, ...btnProps }) => {
           <p>Member since {memberSince}</p>
         </Modal.Body>
         <Modal.Footer>
-          {children}
           <Button block onClick={close}>
             Close
           </Button>
