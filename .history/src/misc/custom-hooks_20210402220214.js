@@ -1,5 +1,5 @@
 import { database } from './firebase';
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export function useModalState(defaultValue = false) {
   const [isOpen, setIsOpen] = useState(defaultValue);
@@ -64,13 +64,13 @@ export function useHover() {
       if (node) {
         node.addEventListener('mouseover', handleMouseOver);
         node.addEventListener('mouseout', handleMouseOut);
+
+        return () => {
+          node.removeEventListener('mouseover', handleMouseOver);
+          node.removeEventListener('mouseout', handleMouseOut);
+        };
       }
-      return () => {
-        node.removeEventListener('mouseover', handleMouseOver);
-        node.removeEventListener('mouseout', handleMouseOut);
-      };
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [ref.current] // Recall only if ref changes
   );
 
