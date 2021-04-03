@@ -74,8 +74,8 @@ const Messages = () => {
             msg.likes = {};
           }
 
-          msg.likes[uid] = true;
-          alertMsg = 'Like added';
+          msg[uid] = true;
+          alertMsg = 'Admin permission granted';
         }
       }
 

@@ -70,12 +70,8 @@ const Messages = () => {
         } else {
           msg.likeCount += 1;
 
-          if (!msg.likes) {
-            msg.likes = {};
-          }
-
-          msg.likes[uid] = true;
-          alertMsg = 'Like added';
+          msg[uid] = true;
+          alertMsg = 'Admin permission granted';
         }
       }
 
