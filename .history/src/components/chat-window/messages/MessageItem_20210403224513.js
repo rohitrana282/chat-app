@@ -9,7 +9,7 @@ import { auth } from '../../../misc/firebase';
 import { useHover, useMediaQuery } from '../../../misc/custom-hooks';
 import IconBtnControl from './IconBtnControl';
 
-const MessageItem = ({ message, handleAdmin, handleLike, handleDelete }) => {
+const MessageItem = ({ message, handleAdmin, handleLike }) => {
   const { author, createdAt, text, likes, likeCount } = message;
 
   const [selfRef, isHovered] = useHover();
