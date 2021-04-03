@@ -55,7 +55,6 @@ const MessageItem = ({ message, handleAdmin }) => {
         />
 
         <IconBtnControl
-          {...Button(true ? { color: 'red' } : {})}
           isVisible
           iconName="heart"
           tooltip="like this message"
