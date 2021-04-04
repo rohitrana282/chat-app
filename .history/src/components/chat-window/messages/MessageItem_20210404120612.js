@@ -8,7 +8,6 @@ import { useCurrentRoom } from '../../../context/current-room.context';
 import { auth } from '../../../misc/firebase';
 import { useHover, useMediaQuery } from '../../../misc/custom-hooks';
 import IconBtnControl from './IconBtnControl';
-import ImgBtnModal from './ImgBtnModal';
 
 const renderFileMessage = file => {
   if (file.contentType.includes('image')) {
