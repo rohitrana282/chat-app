@@ -113,7 +113,7 @@ const Messages = () => {
 
         Alert.info('Message has been deleted');
       } catch (err) {
-        return Alert.error(err.message);
+        Alert.error(err.message);
       }
 
       if (file) {

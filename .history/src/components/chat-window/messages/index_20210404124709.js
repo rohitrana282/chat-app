@@ -113,16 +113,14 @@ const Messages = () => {
 
         Alert.info('Message has been deleted');
       } catch (err) {
-        return Alert.error(err.message);
+        Alert.error(err.message);
       }
 
       if (file) {
         try {
           const fileRef = await storage.refFromURL(file.url);
           await fileRef.delete;
-        } catch (err) {
-          Alert.error(err.message);
-        }
+        } catch (err) {}
       }
     },
     [chatId, messages]
