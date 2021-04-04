@@ -57,7 +57,6 @@ export function groupBy(array, groupingKeyFn) {
     if (!result[groupingKey]) {
       result[groupingKey] = [];
     }
-    result[groupingKey].push(item);
 
     return result;
   }, {});
