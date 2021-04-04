@@ -68,7 +68,7 @@ const Messages = () => {
 
     setTimeout(() => {
       node.scrollTop = node.scrollHeight;
-    }, 500);
+    }, 200);
 
     return () => {
       messagesRef.off('value');

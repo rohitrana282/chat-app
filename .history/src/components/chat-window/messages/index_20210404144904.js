@@ -58,7 +58,7 @@ const Messages = () => {
     setTimeout(() => {
       const newHeight = node.scrollHeight;
       node.scrollTop = newHeight - oldHeight;
-    }, 200);
+    }, 1000);
   }, [loadMessages, limit]);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const Messages = () => {
 
     setTimeout(() => {
       node.scrollTop = node.scrollHeight;
-    }, 500);
+    }, 200);
 
     return () => {
       messagesRef.off('value');
